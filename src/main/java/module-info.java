@@ -6,4 +6,5 @@ module spring.certification {
     requires javaee.api;
     opens com.ftm.vcp.beanmode.config;
     opens com.ftm.vcp.callback;
+    opens com.ftm.vcp.profile;
 }
