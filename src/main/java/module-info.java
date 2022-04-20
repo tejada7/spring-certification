@@ -7,4 +7,5 @@ module spring.certification {
     opens com.ftm.vcp.beanmode.config;
     opens com.ftm.vcp.callback;
     opens com.ftm.vcp.profile;
+    opens com.ftm.vcp.properties;
 }
