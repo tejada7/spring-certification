@@ -8,4 +8,6 @@ module spring.certification {
     opens com.ftm.vcp.callback;
     opens com.ftm.vcp.profile;
     opens com.ftm.vcp.properties;
+    opens com.ftm.vcp.resources;
+    opens resource;
 }
