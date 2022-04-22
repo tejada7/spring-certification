@@ -12,4 +12,6 @@ module spring.certification {
     opens com.ftm.vcp.resources;
     opens resource;
     opens com.ftm.vcp.spel;
+    opens com.ftm.vcp.spelbean;
+    opens spelbean;
 }
