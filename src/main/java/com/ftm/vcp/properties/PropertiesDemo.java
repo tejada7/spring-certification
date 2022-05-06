@@ -4,7 +4,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 /**
  * Mind that configuration in Spring takes the following precedence:
- * first level the vm options, e.g. -Denvironment=value
+ * first level the jvm options, e.g. -Denvironment=value
  * second level the OS environment variable, e.g. ENVIRONMENT=value
  * third level, a properties file, e.g. app.properties
  */

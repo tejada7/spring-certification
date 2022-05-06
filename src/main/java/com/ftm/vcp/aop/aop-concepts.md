@@ -7,8 +7,16 @@
 - Proxy: An object the AOP framework creates to implement the aspect contracts
 
 ## Main annotations
-- @Before advice: Advice to be run before a join point
-- @AfterReturning advice: Advice to be run after a join point completes normally
-- @AfterThrowing advice: Advice to be run after a join point throws an exception
-- @After advice: Advice to be run after a join point regardless of the way it exits
-- @Around advice: Advice that surrounds a join point
+- `@Before` advice: Advice to be run before a join point
+- `@AfterReturning` advice: Advice to be run after a join point completes normally
+- `@AfterThrowing` advice: Advice to be run after a join point throws an exception
+- `@After` advice: Advice to be run after a join point regardless of the way it exits
+- `@Around` advice: Advice that surrounds a join point
+
+
+If a class being advised implements an interface, Spring will create a jdk dynamic proxy, otherwise, a cglib. 
+
+## Other Common Pointcut Designators
+- `within`: Limits the matching of join points to a certain type.
+- `target`: Limits the matching of join points to a specific type.
+- `bean`: Limits the matching of join points to a particular, or a set of Spring beans.
