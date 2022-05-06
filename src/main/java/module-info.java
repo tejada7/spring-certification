@@ -5,6 +5,8 @@ module spring.certification {
     requires spring.expression;
 //    requires jakarta.jakartaee.api;
     requires javaee.api;
+    requires org.aspectj.weaver;
+    requires spring.aop;
     opens com.ftm.vcp.beanmode.config;
     opens com.ftm.vcp.callback;
     opens com.ftm.vcp.profile;
@@ -14,4 +16,7 @@ module spring.certification {
     opens com.ftm.vcp.spel;
     opens com.ftm.vcp.spelbean;
     opens spelbean;
+    opens com.ftm.vcp.aop.config;
+    opens com.ftm.vcp.aop.aspect;
+    opens com.ftm.vcp.aop;
 }
