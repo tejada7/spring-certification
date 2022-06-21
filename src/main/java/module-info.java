@@ -19,4 +19,5 @@ module spring.certification {
     opens com.ftm.vcp.aop.config;
     opens com.ftm.vcp.aop.aspect;
     opens com.ftm.vcp.aop;
+    opens com.ftm.vcp.factorybeans;
 }
