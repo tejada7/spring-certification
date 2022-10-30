@@ -1,10 +1,9 @@
 package com.ftm.vcp.callback;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
-
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 
 public class ABean implements InitializingBean, DisposableBean {
 

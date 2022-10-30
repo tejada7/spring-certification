@@ -3,8 +3,7 @@ module spring.certification {
     requires spring.beans;
     requires spring.core;
     requires spring.expression;
-//    requires jakarta.jakartaee.api;
-    requires javaee.api;
+    requires jakarta.jakartaee.api;
     requires org.aspectj.weaver;
     requires spring.aop;
     opens com.ftm.vcp.beanmode.config;
