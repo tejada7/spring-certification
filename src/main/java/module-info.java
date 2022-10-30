@@ -7,6 +7,7 @@ module spring.certification {
     requires org.aspectj.weaver;
     requires spring.aop;
     opens com.ftm.vcp.beanmode.config;
+    opens com.ftm.vcp.beanmode;
     opens com.ftm.vcp.callback;
     opens com.ftm.vcp.profile;
     opens com.ftm.vcp.properties;

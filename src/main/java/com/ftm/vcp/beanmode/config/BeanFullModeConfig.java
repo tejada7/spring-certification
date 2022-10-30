@@ -9,12 +9,12 @@ import org.springframework.context.annotation.Configuration;
 public class BeanFullModeConfig {
 
     @Bean("john")
-    public Person getPerson() {
+    Person getPerson() {
         return new Person(getName());
     }
 
     @Bean
-    public Name getName() {
+    Name getName() {
         return new Name("John");
     }
 }

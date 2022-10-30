@@ -6,7 +6,7 @@ import com.ftm.vcp.beanmode.model.Name;
 import com.ftm.vcp.beanmode.model.Person;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class BeanModeDemo {
+class BeanModeDemo {
 
     public static void main(String[] args) {
         // Instantiating the object the old-native way
