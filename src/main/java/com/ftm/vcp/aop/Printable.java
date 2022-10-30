@@ -1,5 +1,6 @@
 package com.ftm.vcp.aop;
 
-public interface Printable {
+@FunctionalInterface
+interface Printable {
     void printFullName();
 }

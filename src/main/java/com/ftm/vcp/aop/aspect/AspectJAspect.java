@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-public class AspectJAspect {
+class AspectJAspect {
 
     @Before("execution(* printFullName())")
     private void log() {

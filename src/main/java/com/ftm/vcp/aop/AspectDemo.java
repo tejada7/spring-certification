@@ -3,7 +3,7 @@ package com.ftm.vcp.aop;
 import com.ftm.vcp.aop.config.AspectJConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class AspectDemo {
+class AspectDemo {
 
     public static void main(String[] args) {
         final var applicationContext = new AnnotationConfigApplicationContext(AspectJConfig.class);

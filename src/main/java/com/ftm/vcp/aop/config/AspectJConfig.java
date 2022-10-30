@@ -10,7 +10,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 public class AspectJConfig {
 
     @Bean
-    public Person getPerson() {
+    Person getPerson() {
         return new Person("John Doe");
     }
 }
