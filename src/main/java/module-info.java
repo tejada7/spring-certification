@@ -6,6 +6,7 @@ module spring.certification {
     requires jakarta.jakartaee.api;
     requires org.aspectj.weaver;
     requires spring.aop;
+    requires spring.plugin.core;
     opens com.ftm.vcp.beanmode.config;
     opens com.ftm.vcp.beanmode;
     opens com.ftm.vcp.callback;
@@ -20,4 +21,9 @@ module spring.certification {
     opens com.ftm.vcp.aop.aspect;
     opens com.ftm.vcp.aop;
     opens com.ftm.vcp.factorybeans;
+    opens com.ftm.vcp.plugin;
+    opens com.ftm.vcp.plugin.domain;
+    opens com.ftm.vcp.plugin.infra;
+    opens com.ftm.vcp.plugin.infra.db;
+    opens com.ftm.vcp.plugin.infra.http;
 }

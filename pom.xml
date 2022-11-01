@@ -40,6 +40,33 @@
             <version>${spring-test.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.springframework.plugin</groupId>
+            <artifactId>spring-plugin-metadata</artifactId>
+            <version>${spring-plugin.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.plugin</groupId>
+            <artifactId>spring-plugin-core</artifactId>
+            <version>${spring-plugin.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-aop</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <version>${spring-boot-starter-test.version}</version>
@@ -81,6 +108,7 @@
         <spring-boot-starter-test.version>3.0.0-RC1</spring-boot-starter-test.version>
         <slf4j.version>2.0.3</slf4j.version>
         <byte-buddy.version>1.12.18</byte-buddy.version>
+        <spring-plugin.version>2.0.0.RELEASE</spring-plugin.version>
     </properties>
 
     <build>
