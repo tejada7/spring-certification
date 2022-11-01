@@ -2,7 +2,7 @@ package com.ftm.vcp.factorybeans;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class FactoryBeanDemo {
+public final class FactoryBeanDemo {
 
     public static void main(String[] args) {
         final var context = new AnnotationConfigApplicationContext(ConfigFactoryBean.class);
