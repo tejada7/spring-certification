@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Profile;
 
 @Configuration
 @ComponentScan
-public class BeanConfig {
+public class ProfileBeanConfig {
 
     @Bean
     @Profile("default")
