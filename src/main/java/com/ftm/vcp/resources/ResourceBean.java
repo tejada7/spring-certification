@@ -5,6 +5,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.util.stream.Collectors;
 
@@ -17,17 +18,21 @@ public class ResourceBean {
         this.resourceLoader = resourceLoader;
     }
 
-    public String readResourceFromClassPath() throws IOException {
+    public String readResourceFromClassPath() {
         try (final var lines = Files.lines(resourceLoader
                                                    .getResource("classpath:resource/file.log").getFile().toPath())) {
             return lines.collect(Collectors.joining());
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
         }
     }
 
-    public String readResourceFromFileSystem() throws IOException {
+    public String readResourceFromFileSystem() {
         try (final var lines = Files.lines(new FileSystemResourceLoader()
-                                                   .getResource("classpath:resource/file.log").getFile().toPath())) {
+                                                   .getResource("file:resource/file.log").getFile().toPath())) {
             return lines.collect(Collectors.joining());
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
         }
     }
 }
