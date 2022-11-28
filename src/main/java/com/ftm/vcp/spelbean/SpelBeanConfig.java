@@ -6,4 +6,5 @@ import org.springframework.context.annotation.PropertySource;
 @ComponentScan
 @PropertySource("spelbean/app.properties")
 public class SpelBeanConfig {
+
 }
