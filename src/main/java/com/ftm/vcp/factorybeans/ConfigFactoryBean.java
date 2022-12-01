@@ -4,7 +4,7 @@ import org.springframework.beans.factory.FactoryBean;
 import org.springframework.stereotype.Component;
 
 @Component
-// ℹ️ Unless FactoryBean, AbstractFactoryBean lies allows to create singleton/prototype beans.
+// ℹ️ Unless FactoryBean, AbstractFactoryBean allows to create singleton/prototype beans.
 public final class ConfigFactoryBean implements FactoryBean<ConfigurationProvider> {
 
     private static final boolean FLAG = true;

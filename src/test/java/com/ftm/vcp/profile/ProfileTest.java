@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.stream.Stream;
@@ -43,12 +44,12 @@ class ProfileTest {
 
     private static Stream<Arguments> combinations() {
         return Stream.of(
-                Arguments.of(null, new Class[]{DefaultBean.class}),
-                Arguments.of(new String[]{"default"}, new Class[]{DefaultBean.class}),
-                Arguments.of(new String[]{"dev"}, new Class[]{DevBean.class, DevOrProdBean.class}),
+                Arguments.of(null, new Class[]{DefaultBean.class, NoProfileBean.class}),
+                Arguments.of(new String[]{"default"}, new Class[]{DefaultBean.class, NoProfileBean.class}),
+                Arguments.of(new String[]{"dev"}, new Class[]{DevBean.class, DevOrProdBean.class, NoProfileBean.class}),
                 Arguments.of(new String[]{"dev", "prod"},
-                             new Class[]{DevBean.class, DevOrProdBean.class, DevAndProdBean.class}),
-                Arguments.of(new String[]{"prod"}, new Class[]{DevOrProdBean.class})
+                             new Class[]{DevBean.class, DevOrProdBean.class, DevAndProdBean.class, NoProfileBean.class}),
+                Arguments.of(new String[]{"prod"}, new Class[]{DevOrProdBean.class, NoProfileBean.class})
         );
     }
 }

@@ -14,4 +14,9 @@ public class ProfileBeanConfig {
     public DefaultBean defaultBean() {
         return new DefaultBean();
     }
+
+    @Bean
+    public NoProfileBean noProfileBean() {
+        return new NoProfileBean();
+    }
 }
