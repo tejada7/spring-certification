@@ -109,6 +109,11 @@
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
     </dependencies>
     <properties>
         <spring-context.version>6.0.0</spring-context.version>
@@ -118,9 +123,10 @@
         <aspectjweaver.version>1.9.9.1</aspectjweaver.version>
         <spring-test.version>6.0.0</spring-test.version>
         <spring-boot-starter-test.version>3.0.0</spring-boot-starter-test.version>
-        <slf4j.version>2.0.4</slf4j.version>
+        <slf4j.version>2.0.5</slf4j.version>
         <byte-buddy.version>1.12.19</byte-buddy.version>
         <spring-plugin.version>3.0.0</spring-plugin.version>
+        <spring-tx.version>6.0.0</spring-tx.version>
     </properties>
 
     <build>
