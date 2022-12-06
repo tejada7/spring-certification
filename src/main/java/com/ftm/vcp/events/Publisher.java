@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.random.RandomGeneratorFactory;
 import java.util.stream.LongStream;
 
 @Component
@@ -21,7 +22,8 @@ public class Publisher {
         try {
             LongStream.range(0, 5)
                     .forEach(i -> {
-                        final var message = new Message("Message " + i);
+                        final var message = new Message("Message " + i,
+                                                        randomBoolean());
                         scheduledExecutorService.schedule(() -> eventPublisher.publishEvent(message),
                                                           5 - i,
                                                           TimeUnit.SECONDS);
@@ -30,5 +32,9 @@ public class Publisher {
             scheduledExecutorService.awaitTermination(7, TimeUnit.SECONDS);
             scheduledExecutorService.shutdown();
         }
+    }
+
+    private boolean randomBoolean() {
+        return RandomGeneratorFactory.of("Random").create().nextBoolean();
     }
 }

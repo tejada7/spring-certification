@@ -8,7 +8,6 @@ module spring.certification {
     requires spring.aop;
     requires spring.plugin.core;
     requires java.logging;
-    // requires spring.tr
     opens com.ftm.vcp.beanmode.config;
     opens com.ftm.vcp.beanmode;
     opens com.ftm.vcp.callback;
