@@ -1,0 +1,10 @@
+spring:
+  devtools:
+    restart:
+      enabled: true
+logging:
+  level:
+    org:
+      springframework:
+        boot:
+          devtools: debug

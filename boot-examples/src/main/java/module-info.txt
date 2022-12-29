@@ -1,0 +1,16 @@
+/**
+ * If enabled, devtools reload won't work.
+ */
+module boot.examples {
+    requires java.sql;
+    requires spring.core;
+    requires spring.beans;
+    requires spring.context;
+    requires spring.boot.autoconfigure;
+    requires spring.boot;
+    requires spring.web;
+    requires spring.boot.devtools;
+    requires jdk.management;
+    opens com.ftm.vcp.bootexamples;
+    opens com.ftm.vcp.bootexamples.resources;
+}
