@@ -2,6 +2,15 @@ spring:
   devtools:
     restart:
       enabled: true
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/postgres
+#    name: postgres
+#    password: postgres
+#    username: postgres
+  sql:
+    init:
+      continue-on-error: true
+      mode: always
 logging:
   level:
     org:
