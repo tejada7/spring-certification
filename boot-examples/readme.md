@@ -20,3 +20,8 @@ spring:
 When applying changes, don't forget to rebuild the project (cmd + F9 on Mac OS). 
 
 ⚠️ If you're using JPMS, the reload is unfortunately not possible, further details [here](https://stackoverflow.com/questions/54022668/spring-boot-configure-devtools-in-modular-java).
+
+### Generating api model classes from open api contract definition
+```shell
+mvn compile -P generate-api-model
+```

@@ -1,7 +1,7 @@
 package com.ftm.vcp.bootexamples;
 
-import com.ftm.vcp.bootexamples.infrastructure.FooRepository;
-import com.ftm.vcp.bootexamples.infrastructure.entity.Foo;
+import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.FooRepository;
+import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.entity.FooEntity;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +17,7 @@ public class BootExamplesApplication {
 
     @Bean
     CommandLineRunner start(FooRepository fooRepository) {
-        return args -> fooRepository.save(new Foo(null, "foo4"));
+        return args -> fooRepository.save(new FooEntity(null, "foo4"));
     }
 
 }

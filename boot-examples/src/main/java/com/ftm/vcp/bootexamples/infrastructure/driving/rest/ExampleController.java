@@ -1,7 +1,7 @@
-package com.ftm.vcp.bootexamples.resources;
+package com.ftm.vcp.bootexamples.infrastructure.driving.rest;
 
-import com.ftm.vcp.bootexamples.infrastructure.FooRepository;
-import com.ftm.vcp.bootexamples.infrastructure.entity.Foo;
+import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.FooRepository;
+import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.entity.FooEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +22,7 @@ public class ExampleController {
     }
 
     @GetMapping("/foos")
-    public Iterable<Foo> listFoos() {
+    public Iterable<FooEntity> listFoos() {
         return fooRepository.findAll();
     }
 }
