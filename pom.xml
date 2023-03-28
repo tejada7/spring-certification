@@ -42,7 +42,7 @@
         <dependency>
             <groupId>org.springframework.plugin</groupId>
             <artifactId>spring-plugin-metadata</artifactId>
-            <version>${spring-plugin.version}</version>
+            <version>${spring-plugin-metadata.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
@@ -53,7 +53,7 @@
         <dependency>
             <groupId>org.springframework.plugin</groupId>
             <artifactId>spring-plugin-core</artifactId>
-            <version>${spring-plugin.version}</version>
+            <version>${spring-plugin-core.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
@@ -120,17 +120,18 @@
         </dependency>
     </dependencies>
     <properties>
-        <spring-context.version>6.0.0</spring-context.version>
-        <spring-security-core.version>6.0.0</spring-security-core.version>
-        <java.version>17</java.version>
+        <spring-context.version>6.0.7</spring-context.version>
+        <spring-security-core.version>6.0.2</spring-security-core.version>
+        <java.version>20</java.version>
         <jakarta.jakartaee-api.version>10.0.0</jakarta.jakartaee-api.version>
-        <aspectjweaver.version>1.9.9.1</aspectjweaver.version>
-        <spring-test.version>6.0.0</spring-test.version>
-        <spring-boot-starter-test.version>3.0.0</spring-boot-starter-test.version>
+        <aspectjweaver.version>1.9.19</aspectjweaver.version>
+        <spring-test.version>6.0.7</spring-test.version>
+        <spring-boot-starter-test.version>3.0.5</spring-boot-starter-test.version>
         <slf4j.version>2.0.5</slf4j.version>
-        <byte-buddy.version>1.12.19</byte-buddy.version>
-        <spring-plugin.version>3.0.0</spring-plugin.version>
-        <spring-tx.version>6.0.0</spring-tx.version>
+        <byte-buddy.version>1.14.2</byte-buddy.version>
+        <spring-plugin.version>3.0.5</spring-plugin.version>
+        <spring-plugin-metadata.version>3.0.0</spring-plugin-metadata.version>
+        <spring-plugin-core.version>3.0.0</spring-plugin-core.version>
     </properties>
 
     <build>
