@@ -28,4 +28,5 @@ module spring.certification {
     opens com.ftm.vcp.plugin.infra.db;
     opens com.ftm.vcp.plugin.infra.http;
     opens com.ftm.vcp.events;
+    opens com.ftm.vcp.beanfactorypostprocessor.config;
 }

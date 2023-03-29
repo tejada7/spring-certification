@@ -21,12 +21,12 @@ public class ABean implements InitializingBean, DisposableBean {
         System.out.println("Calling aBean's constructor.");
     }
 
-    @PostConstruct
+    @PostConstruct // N.B, If the bean implements BeanFactoryPostProcessor, this method is not  called
     private void onCreation() {
         System.out.println("Invoking @PostContruct method.");
     }
 
-    @PreDestroy
+    @PreDestroy // N.B, If the bean implements BeanFactoryPostProcessor, this method is not  called
     private void onDestroy() {
         System.out.println("Invoking @PreDestroy method.");
     }
