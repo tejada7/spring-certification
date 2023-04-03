@@ -21,8 +21,13 @@ public class ExampleController {
         return "ok".transform(p1::concat).transform(p2::concat);
     }
 
-    @GetMapping("/foos")
+    @GetMapping("/protected/default/foos")
     public Iterable<FooEntity> listFoos() {
+        return fooRepository.findAll();
+    }
+
+    @GetMapping("/protected/http-basic/foos")
+    public Iterable<FooEntity> listFoosProtectedWithHttpBasic() {
         return fooRepository.findAll();
     }
 }
