@@ -1,7 +1,7 @@
 package com.ftm.vcp.beanpostprocessor;
 
-import com.ftm.vcp.beanpostprocessor.model.Foo;
 import com.ftm.vcp.beanpostprocessor.config.BeanPostProcessorConfig;
+import com.ftm.vcp.beanpostprocessor.model.Foo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.IndicativeSentencesGeneration;
@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 class BeanPostProcessorTest {
 
     @Test
-    void should_call_post_process_methods(final CapturedOutput output) {
+    void should_call_post_process_methods_in_between_constructor(final CapturedOutput output) {
         // Given
         final var applicationContext = new AnnotationConfigApplicationContext(BeanPostProcessorConfig.class);
 
@@ -30,10 +30,13 @@ class BeanPostProcessorTest {
         applicationContext.getBean(Foo.class);
 
         // Then
-        then(output.toString()).contains(
-                "Calling postProcessBeforeInitialization...",
-                "Calling postProcessAfterInitialization..."
-        );
+        then(output.toString())
+                .containsSequence("""
+                                          Initializing foo...
+                                          Calling postProcessBeforeInitialization...
+                                          Calling postProcessAfterInitialization...
+                                          """
+                );
     }
 
 }

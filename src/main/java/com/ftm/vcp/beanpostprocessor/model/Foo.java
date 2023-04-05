@@ -16,4 +16,8 @@ public class Foo implements BeanPostProcessor {
         System.out.println("Calling postProcessAfterInitialization...");
         return BeanPostProcessor.super.postProcessAfterInitialization(bean, beanName);
     }
+
+    public Foo() {
+        System.out.println("Initializing foo...");
+    }
 }

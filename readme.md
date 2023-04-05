@@ -25,3 +25,6 @@ One improvement would be to play with the `Plugin#supports` method so that some 
 changed based out of a configuration property, although it would required the `RepoStrategy#plugins` to be refreshed upon
 configuration updates.
 [This video](https://www.youtube.com/watch?time_continue=367&v=GlV5sXdXPu4&feature=emb_logo&themeRefresh=1) helped me discover this great library. 
+
+### Other useful notes
+* [Bean post processor](src/main/java/com/ftm/vcp/beanpostprocessor/notes_bean_post_processor.md)
