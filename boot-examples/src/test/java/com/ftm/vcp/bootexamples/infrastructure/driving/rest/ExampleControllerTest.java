@@ -7,8 +7,6 @@ import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.IndicativeSentencesGeneration;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
@@ -17,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.DisplayNameGenerator.IndicativeSentences;
 import static org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -36,14 +35,37 @@ class ExampleControllerTest {
     @Test
     @WithMockUser
     void should_reply_ok_if_authenticated_user() throws Exception {
-        mockMvc.perform(get("/protected/default/foos"))
+        mockMvc.perform(get(ExampleController.PROTECTED_DEFAULT_FOOS_URL))
                 .andExpect(status().isOk());
     }
 
     @Test
     void should_reply_unauthorized_when_non_authenticated_user() throws Exception {
-        mockMvc.perform(get("/protected/default/foos"))
+        mockMvc.perform(get(ExampleController.PROTECTED_DEFAULT_FOOS_URL))
+                .andExpect(status().isUnauthorized());
+
+        mockMvc.perform(get(ExampleController.PROTECTED_HTTP_BASIC_FOOS_URL))
                 .andExpect(status().isUnauthorized());
     }
 
+    @Test
+    @WithMockUser(roles = "HTTP_BASIC_USER")
+    void should_reply_ok_when_valid_role() throws Exception {
+        mockMvc.perform(get(ExampleController.PROTECTED_HTTP_BASIC_FOOS_URL))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @WithMockUser(roles = "ANOTHER_ROLE")
+    void should_reply_forbidden_when_invalid_role() throws Exception {
+        mockMvc.perform(get(ExampleController.PROTECTED_HTTP_BASIC_FOOS_URL))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    void should_reply_ok_when_using_real_user_password() throws Exception {
+        mockMvc.perform(get(ExampleController.PROTECTED_HTTP_BASIC_FOOS_URL)
+                                .with(httpBasic("user", "password")))
+                .andExpect(status().isOk());
+    }
 }

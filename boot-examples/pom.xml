@@ -14,7 +14,7 @@
     <name>boot-examples</name>
     <description>boot-examples</description>
     <properties>
-        <java.version>17</java.version>
+        <java.version>20</java.version>
         <springdoc-openapi-starter-webmvc-ui.version>2.0.2</springdoc-openapi-starter-webmvc-ui.version>
         <maven-surefire-plugin.version>3.0.0-M9</maven-surefire-plugin.version>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>

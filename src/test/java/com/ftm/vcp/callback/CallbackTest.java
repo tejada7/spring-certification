@@ -24,14 +24,15 @@ class CallbackTest {
         // Then
         thenSoftly(softly -> {
             softly.then(bean).isNotNull();
-            softly.then(output.toString()).contains(
-                    "Calling aBean's constructor.",
-                    "Invoking @PostContruct method.",
-                    "Invoking DisposableBean's afterPropertiesSet method.",
-                    "Invoking customInit method.",
-                    "Invoking @PreDestroy method.",
-                    "Invoking DisposableBean's destroy method.",
-                    "Invoking customDestroy method."
+            softly.then(output.toString()).containsSequence("""
+                                                                    Calling aBean's constructor. 
+                                                                    Invoking @PostContruct method.
+                                                                    Invoking DisposableBean's afterPropertiesSet method.
+                                                                    Invoking customInit method.
+                                                                    Invoking @PreDestroy method.
+                                                                    Invoking DisposableBean's destroy method.
+                                                                    Invoking customDestroy method.
+                                                                    """
             );
         });
     }
