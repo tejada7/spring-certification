@@ -1,12 +1,12 @@
-package com.ftm.vcp.callback;
+package com.ftm.vcp.beaninitialization;
 
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class CallbackDemo {
+public class BeanInitializationDemo {
 
     public static void main(String[] args) {
-        final ConfigurableApplicationContext context = new AnnotationConfigApplicationContext(CallbackConfig.class);
+        final ConfigurableApplicationContext context = new AnnotationConfigApplicationContext(BeanInitializationConfig.class);
         context.registerShutdownHook();
     }
 }

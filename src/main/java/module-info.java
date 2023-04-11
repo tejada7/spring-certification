@@ -10,7 +10,7 @@ module spring.certification {
     requires java.logging;
     opens com.ftm.vcp.beanmode.config;
     opens com.ftm.vcp.beanmode;
-    opens com.ftm.vcp.callback;
+    opens com.ftm.vcp.beaninitialization;
     opens com.ftm.vcp.profile;
     opens com.ftm.vcp.properties;
     opens com.ftm.vcp.resources;

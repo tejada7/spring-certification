@@ -1,11 +1,11 @@
-package com.ftm.vcp.callback;
+package com.ftm.vcp.beaninitialization;
 
 import org.springframework.context.annotation.Bean;
 
-public class CallbackConfig {
+public class BeanInitializationConfig {
 
     @Bean(initMethod = "customInit", destroyMethod = "customDestroy")
-    public ABean aBean() {
+    ABean aBean() {
         return new ABean();
     }
 }
