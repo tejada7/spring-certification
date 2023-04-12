@@ -31,7 +31,11 @@ class AspectTest {
 
         // Then
         thenSoftly(soft -> {
-            soft.then(output).contains("Printed by an advice.", "Full name: John Doe");
+            soft.then(output)
+                    .containsSequence("""
+                                              Printed by an advice, within the method printFullName.
+                                              Full name: John Doe        
+                                              """);
             soft.then(printable)
                     .isNotExactlyInstanceOf(Printable.class)
                     .isNotExactlyInstanceOf(Person.class);

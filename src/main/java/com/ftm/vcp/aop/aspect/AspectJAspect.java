@@ -1,5 +1,6 @@
 package com.ftm.vcp.aop.aspect;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
@@ -9,7 +10,10 @@ import org.springframework.stereotype.Component;
 class AspectJAspect {
 
     @Before("execution(* printFullName())")
-    private void log() {
-        System.out.println("Printed by an advice.");
+    private void log(JoinPoint joinPoint) {
+        System.out.println("Printed by an advice, within the method %s."
+                                   .formatted(joinPoint.getSignature().getName()));
     }
+
+
 }
