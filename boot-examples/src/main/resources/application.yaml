@@ -1,4 +1,7 @@
 spring:
+  datasource:
+    name: foo
+    generate-unique-name: false
   devtools:
     restart:
       enabled: true
