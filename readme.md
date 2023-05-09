@@ -27,4 +27,5 @@ configuration updates.
 [This video](https://www.youtube.com/watch?time_continue=367&v=GlV5sXdXPu4&feature=emb_logo&themeRefresh=1) helped me discover this great library. 
 
 ### Other useful notes
-* [Bean post processor](src/main/java/com/ftm/vcp/beanpostprocessor/notes_bean_post_processor.md)
+* [Bean post processor](src/main/java/com/ftm/vcp/beanpostprocessor/notes_bean_post_processor.md) 
+* [Bean configuration full vs lite mode](src/main/java/com/ftm/vcp/beanmode/notes_full_vs_line_mode.md)

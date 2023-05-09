@@ -4,16 +4,17 @@ import com.ftm.vcp.beanmode.model.Name;
 import com.ftm.vcp.beanmode.model.Person;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 /**
  * @see org.springframework.context.annotation.ConfigurationClassUtils
  */
-@Configuration
-public class BeanFullModeConfig {
+@Configuration(proxyBeanMethods = false) // This could easily be replaced by @Component
+public final class BeanWithoutProxyConfig {
 
     @Bean("john")
-    Person getPerson() {
-        return new Person(getName());
+    Person getPerson(Name name) {
+        return new Person(name);
     }
 
     @Bean

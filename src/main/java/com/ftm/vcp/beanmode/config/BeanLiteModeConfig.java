@@ -4,6 +4,9 @@ import com.ftm.vcp.beanmode.model.Name;
 import com.ftm.vcp.beanmode.model.Person;
 import org.springframework.context.annotation.Bean;
 
+/**
+ * @see org.springframework.context.annotation.ConfigurationClassUtils
+ */
 public class BeanLiteModeConfig {
 
     @Bean("john")
