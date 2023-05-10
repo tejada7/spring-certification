@@ -20,3 +20,6 @@ logging:
       springframework:
         boot:
           devtools: debug
+
+custom-configuration:
+  foo: someValue
