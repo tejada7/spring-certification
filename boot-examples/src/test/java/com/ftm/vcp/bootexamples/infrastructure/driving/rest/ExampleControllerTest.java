@@ -2,6 +2,7 @@ package com.ftm.vcp.bootexamples.infrastructure.driving.rest;
 
 import com.ftm.vcp.bootexamples.infrastructure.driven.config.SecurityConfig;
 import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.FooRepository;
+import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.entity.FooEntity;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.IndicativeSentencesGeneration;
@@ -11,13 +12,21 @@ import org.springframework.boot.autoconfigure.h2.H2ConsoleProperties;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.DisplayNameGenerator.IndicativeSentences;
 import static org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @DisplayName("Example controller")
@@ -71,5 +80,16 @@ class ExampleControllerTest {
         mockMvc.perform(get(ExampleController.PROTECTED_HTTP_BASIC_FOOS_URL)
                                 .with(httpBasic("user", "password")))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    @WithMockUser
+    void should_reply_created_when_foo_created() throws Exception {
+        given(fooRepository.save(any())).willReturn(new FooEntity("123", "a new foo"));
+        mockMvc.perform(post(ExampleController.PROTECTED_DEFAULT_FOOS_URL)
+                                .with(csrf()))
+                .andExpect(status().isCreated())
+                .andExpect(header().string(HttpHeaders.LOCATION, containsString("/protected/default/foos/123")))
+                .andDo(MockMvcResultHandlers.print());
     }
 }

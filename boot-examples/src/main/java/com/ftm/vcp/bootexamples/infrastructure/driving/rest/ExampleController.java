@@ -2,17 +2,17 @@ package com.ftm.vcp.bootexamples.infrastructure.driving.rest;
 
 import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.FooRepository;
 import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.entity.FooEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 public class ExampleController {
 
     public static final String PROTECTED_DEFAULT_FOOS_URL = "/protected/default/foos";
     public static final String PROTECTED_HTTP_BASIC_FOOS_URL = "/protected/http-basic/foos";
+
     private final FooRepository fooRepository;
 
     public ExampleController(final FooRepository fooRepository) {
@@ -33,5 +33,15 @@ public class ExampleController {
     @GetMapping(PROTECTED_HTTP_BASIC_FOOS_URL)
     public Iterable<FooEntity> listFoosProtectedWithHttpBasic() {
         return fooRepository.findAll();
+    }
+
+    @PostMapping(PROTECTED_DEFAULT_FOOS_URL)
+    public ResponseEntity<Void> create() {
+        final var savedFoo = fooRepository.save(new FooEntity(null, "a new foo"));
+        return ResponseEntity.created(ServletUriComponentsBuilder
+                                              .fromCurrentRequestUri()
+                                              .path("/{fooId}")
+                                              .buildAndExpand(savedFoo.id()).toUri())
+                .build();
     }
 }
