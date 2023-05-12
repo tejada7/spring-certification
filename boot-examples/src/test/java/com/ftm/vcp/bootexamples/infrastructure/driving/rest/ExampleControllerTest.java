@@ -22,12 +22,10 @@ import static org.junit.jupiter.api.DisplayNameGenerator.IndicativeSentences;
 import static org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @DisplayName("Example controller")
 @DisplayNameGeneration(IndicativeSentences.class)
@@ -78,7 +76,7 @@ class ExampleControllerTest {
     @Test
     void should_reply_ok_when_using_real_user_password() throws Exception {
         mockMvc.perform(get(ExampleController.PROTECTED_HTTP_BASIC_FOOS_URL)
-                                .with(httpBasic("user", "password")))
+                        .with(httpBasic("user", "password")))
                 .andExpect(status().isOk());
     }
 
@@ -86,8 +84,15 @@ class ExampleControllerTest {
     @WithMockUser
     void should_reply_created_when_foo_created() throws Exception {
         given(fooRepository.save(any())).willReturn(new FooEntity("123", "a new foo"));
+
+        final var xsrfCookie = mockMvc.perform(post(ExampleController.PROTECTED_DEFAULT_FOOS_URL))
+                .andExpect(status().isForbidden())
+                .andExpect(cookie().exists("XSRF-TOKEN"))
+                .andReturn().getResponse().getCookie("XSRF-TOKEN");
+
         mockMvc.perform(post(ExampleController.PROTECTED_DEFAULT_FOOS_URL)
-                                .with(csrf()))
+                        .header("X-XSRF-TOKEN", xsrfCookie.getValue())
+                        .cookie(xsrfCookie))
                 .andExpect(status().isCreated())
                 .andExpect(header().string(HttpHeaders.LOCATION, containsString("/protected/default/foos/123")))
                 .andDo(MockMvcResultHandlers.print());

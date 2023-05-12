@@ -1,6 +1,8 @@
 package com.ftm.vcp.bootexamples.infrastructure.driven.config;
 
 import com.ftm.vcp.bootexamples.infrastructure.driving.rest.ExampleController;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,16 +18,26 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfToken;
+import org.springframework.security.web.csrf.CsrfTokenRequestHandler;
+import org.springframework.security.web.csrf.XorCsrfTokenRequestAttributeHandler;
 
-@Configuration
+import java.util.function.Supplier;
+
+@Configuration(proxyBeanMethods = false)
 @EnableMethodSecurity
-public class SecurityConfig {
+public final class SecurityConfig {
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .authorizeHttpRequests(authorizeRequestConfigurer -> authorizeRequestConfigurer
                         .anyRequest().authenticated())
+                .csrf(csrfConfigurer -> csrfConfigurer
+                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                        .csrfTokenRequestHandler(backwardCompatibleXorCsrfTokenHandler())
+                )
                 .exceptionHandling(exceptionHandlingConfigurer -> exceptionHandlingConfigurer
                         .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .build();
@@ -65,4 +77,28 @@ public class SecurityConfig {
                         .build()
         );
     }
+
+    /**
+     * Combination of
+     * {@link XorCsrfTokenRequestAttributeHandler#handle(HttpServletRequest, HttpServletResponse, Supplier)}
+     * and {@link CsrfTokenRequestHandler#resolveCsrfTokenValue(HttpServletRequest, CsrfToken)} default implementation
+     *
+     * @return an implementation of CsrfTokenRequestHandler
+     * @see <link>https://stackoverflow.com/questions/74447118/csrf-protection-not-working-with-spring-security-6</link>
+     */
+    private static CsrfTokenRequestHandler backwardCompatibleXorCsrfTokenHandler() {
+        final var delegate = new XorCsrfTokenRequestAttributeHandler();
+        delegate.setCsrfRequestAttributeName("_csrf");
+        return delegate::handle;
+//        return delegate;
+        // Equivalent to:
+//        return new CsrfTokenRequestHandler() {
+//            @Override
+//            public void handle(final HttpServletRequest request, final HttpServletResponse response,
+//                               final Supplier<CsrfToken> csrfToken) {
+//                delegate.handle(request, response, csrfToken);
+//            }
+//        };
+    }
+
 }

@@ -39,9 +39,9 @@ public class ExampleController {
     public ResponseEntity<Void> create() {
         final var savedFoo = fooRepository.save(new FooEntity(null, "a new foo"));
         return ResponseEntity.created(ServletUriComponentsBuilder
-                                              .fromCurrentRequestUri()
-                                              .path("/{fooId}")
-                                              .buildAndExpand(savedFoo.id()).toUri())
-                .build();
+                                     .fromCurrentRequestUri()
+                                     .path("/{fooId}")
+                                     .buildAndExpand(savedFoo.id()).toUri())
+                             .build();
     }
 }
