@@ -34,6 +34,8 @@ class AspectTest {
             soft.then(output)
                     .containsSequence("""
                                               Printed by an advice, within the method printFullName.
+                                              Printed by targetAdvice.
+                                              Printing from within advice.
                                               Full name: John Doe        
                                               """);
             soft.then(printable)

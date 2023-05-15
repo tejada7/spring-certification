@@ -18,7 +18,11 @@
 
 If a class being advised implements an interface, Spring will create a `jdk dynamic proxy`, otherwise, a `cglib` one. 
 
-## Other Common Pointcut Designators
+## Pointcut Designators (PCD)
+- `execution`: matches a method execution
 - `within`: limits the matching of join points to a certain type.
 - `target`: limits the matching of join points to a specific type.
 - `bean`: limits the matching of join points to a particular, or a set of Spring beans.
+- `args`: maps the argument of the adviced method 
+- `this`: gets instance of proxy (jdk or CGlib based)
+- `annotation`: limits the matching of joint points to a specific object with a given annotation.

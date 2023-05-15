@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @ComponentScan(basePackages = "com.ftm.vcp.aop.aspect")
-@EnableAspectJAutoProxy
+@EnableAspectJAutoProxy// (proxyTargetClass = true) // → to force CGlib even when dealing with interfaces
 public class AspectJConfig {
 
     @Bean

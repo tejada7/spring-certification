@@ -12,5 +12,10 @@ class AspectDemo {
         final var roleAssignable = applicationContext.getBean(RoleAssignable.class);
         roleAssignable.assign(Role.ADMIN);
         System.out.println(printable.getClass().getName()); // a jdk dynamic Proxy if person does implement any interface, in this case printable
+        final var nameable = applicationContext.getBean(Nameable.class);
+        nameable.getName();
+        final var exceptionThrower = applicationContext.getBean(ExceptionThrower.class);
+        exceptionThrower.methodThrowingRuntimeException();
+        applicationContext.registerShutdownHook();
     }
 }
