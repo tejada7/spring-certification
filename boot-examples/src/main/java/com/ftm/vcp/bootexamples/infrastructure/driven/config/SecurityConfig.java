@@ -3,6 +3,9 @@ package com.ftm.vcp.bootexamples.infrastructure.driven.config;
 import com.ftm.vcp.bootexamples.infrastructure.driving.rest.ExampleController;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
+import org.springframework.boot.actuate.health.HealthEndpoint;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,6 +36,7 @@ public final class SecurityConfig {
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .authorizeHttpRequests(authorizeRequestConfigurer -> authorizeRequestConfigurer
+                        .requestMatchers(EndpointRequest.to(HealthEndpoint.class)).permitAll()
                         .anyRequest().authenticated())
                 .csrf(csrfConfigurer -> csrfConfigurer
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
