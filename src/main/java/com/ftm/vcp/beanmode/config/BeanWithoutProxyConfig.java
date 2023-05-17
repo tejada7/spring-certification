@@ -4,7 +4,6 @@ import com.ftm.vcp.beanmode.model.Name;
 import com.ftm.vcp.beanmode.model.Person;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 /**
  * @see org.springframework.context.annotation.ConfigurationClassUtils
@@ -13,12 +12,12 @@ import org.springframework.stereotype.Component;
 public final class BeanWithoutProxyConfig {
 
     @Bean("john")
-    Person getPerson(Name name) {
+    private Person getPerson(Name name) {
         return new Person(name);
     }
 
     @Bean
-    Name getName() {
+    private Name getName() {
         return new Name("John");
     }
 }
