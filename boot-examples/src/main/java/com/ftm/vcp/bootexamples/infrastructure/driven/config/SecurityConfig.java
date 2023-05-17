@@ -30,6 +30,7 @@ import java.util.function.Supplier;
 
 @Configuration(proxyBeanMethods = false)
 @EnableMethodSecurity
+// @EnableWebSecurity // Spring Boot includes the @EnableWebSecurity annotation for you. See Boot's SecurityAutoConfiguration class for details.
 public final class SecurityConfig {
 
     @Bean
