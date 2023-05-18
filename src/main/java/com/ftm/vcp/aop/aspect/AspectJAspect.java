@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.time.LocalTime;
 
 @Aspect
 @Component
@@ -65,5 +64,10 @@ class AspectJAspect {
     @AfterThrowing(pointcut = "methodThrowingRuntimeExceptionPointCut()", throwing = "exception")
     private void handleExceptionThrown(JoinPoint joinPoint, Exception exception) {
         System.out.printf("The exception thrown was '%s'", exception);
+    }
+
+    @After("methodThrowingRuntimeExceptionPointCut()")
+    private void afterAdvice() {
+        System.out.println("Method still gets executed regardless of any exception being thrown.");
     }
 }
