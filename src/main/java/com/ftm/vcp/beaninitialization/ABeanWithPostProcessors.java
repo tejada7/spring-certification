@@ -16,7 +16,7 @@ public class ABeanWithPostProcessors implements InitializingBean, DisposableBean
 
     @Override
     public void afterPropertiesSet() {
-        System.out.println("2. Invoking DisposableBean's afterPropertiesSet method.");
+        System.out.println("2. Invoking InitializingBean's afterPropertiesSet method.");
     }
 
     public ABeanWithPostProcessors() {

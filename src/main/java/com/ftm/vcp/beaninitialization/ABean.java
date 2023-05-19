@@ -14,7 +14,7 @@ public class ABean implements InitializingBean, DisposableBean {
 
     @Override
     public void afterPropertiesSet() {
-        System.out.println("3. Invoking DisposableBean's afterPropertiesSet method.");
+        System.out.println("3. Invoking InitializingBean's afterPropertiesSet method.");
     }
 
     public ABean() {

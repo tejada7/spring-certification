@@ -27,7 +27,7 @@ class BeanInitializationTest {
                     .containsSequence("""
                                               1. Calling aBean's constructor.
                                               2. Invoking @PostContruct method.
-                                              3. Invoking DisposableBean's afterPropertiesSet method.
+                                              3. Invoking InitializingBean's afterPropertiesSet method.
                                               4. Invoking customInit method.
                                               5. Invoking @PreDestroy method.
                                               6. Invoking DisposableBean's destroy method.
@@ -52,7 +52,7 @@ class BeanInitializationTest {
             softly.then(output.toString())
                     .containsSequence("""
                                               1. Calling aBean's constructor.
-                                              2. Invoking DisposableBean's afterPropertiesSet method.
+                                              2. Invoking InitializingBean's afterPropertiesSet method.
                                               3. Invoking customInit method.
                                               4. Calling post process bean factory...
                                               5. Calling postProcessBeforeInitialization...
