@@ -26,3 +26,5 @@ If a class being advised implements an interface, Spring will create a `jdk dyna
 - `args`: maps the argument of the adviced method 
 - `this`: gets instance of proxy (jdk or CGlib based)
 - `annotation`: limits the matching of joint points to a specific object with a given annotation.
+
+For further info, refer to [official doc](https://docs.spring.io/spring-framework/reference/core/aop/ataspectj/pointcuts.html#aop-pointcuts-designators).
