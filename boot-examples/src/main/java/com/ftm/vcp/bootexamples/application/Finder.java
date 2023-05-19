@@ -15,6 +15,6 @@ public class Finder implements FinderApi {
 
     @Override
     public FooEntity apply(final String id) {
-        return fooRepository.findById(id).orElseThrow();
+        return fooRepository.findById(id).orElse(null);
     }
 }
