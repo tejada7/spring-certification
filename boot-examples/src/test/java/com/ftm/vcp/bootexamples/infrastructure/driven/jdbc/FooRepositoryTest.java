@@ -18,7 +18,7 @@ class FooRepositoryTest {
 
     @Test
     void should_find_by_id_and_name_like() {
-        final var savedEntity = fooRepository.save(new FooEntity(null, "toto"));
+        final var savedEntity = fooRepository.create(new FooEntity(null, "toto"));
 
         thenSoftly(softly -> {
             softly.then(fooRepository.findByIdAndNameLike(savedEntity.id(), "%ot%")).isPresent();

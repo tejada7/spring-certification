@@ -1,6 +1,6 @@
 package com.ftm.vcp.bootexamples.application;
 
-import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.FooRepository;
+import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.EncapsulatedFooRepository;
 import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.entity.FooEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,7 +16,7 @@ import static org.mockito.BDDMockito.given;
 class FinderTest {
 
     @Test
-    void should_find_entity(@Mock FooRepository fooMockedRepository) {
+    void should_find_entity(@Mock EncapsulatedFooRepository fooMockedRepository) {
         // Arrange
         final var finder = new Finder(fooMockedRepository);
         final String anId = "123";

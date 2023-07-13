@@ -1,7 +1,7 @@
 package com.ftm.vcp.bootexamples.infrastructure.driving.rest;
 
 import com.ftm.vcp.bootexamples.infrastructure.driven.config.SecurityConfig;
-import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.FooRepository;
+import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.EncapsulatedFooRepository;
 import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.entity.FooEntity;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -38,7 +38,7 @@ class ExampleControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private FooRepository fooRepository;
+    private EncapsulatedFooRepository fooRepository;
 
     @MockBean
     private H2ConsoleProperties h2ConsoleProperties;
@@ -83,7 +83,7 @@ class ExampleControllerTest {
     @Test
     @WithMockUser
     void should_reply_created_when_foo_created() throws Exception {
-        given(fooRepository.save(any())).willReturn(new FooEntity("123", "a new foo"));
+        given(fooRepository.create(any())).willReturn(new FooEntity("123", "a new foo"));
 
         final var xsrfCookie = mockMvc.perform(post(ExampleController.PROTECTED_DEFAULT_FOOS_URL))
                 .andExpect(status().isForbidden())

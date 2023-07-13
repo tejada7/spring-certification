@@ -1,6 +1,6 @@
 package com.ftm.vcp.bootexamples.infrastructure.driving.rest;
 
-import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.FooRepository;
+import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.EncapsulatedFooRepository;
 import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.entity.FooEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,9 +13,9 @@ public class ExampleController {
     public static final String PROTECTED_DEFAULT_FOOS_URL = "/protected/default/foos";
     public static final String PROTECTED_HTTP_BASIC_FOOS_URL = "/protected/http-basic/foos";
 
-    private final FooRepository fooRepository;
+    private final EncapsulatedFooRepository fooRepository;
 
-    public ExampleController(final FooRepository fooRepository) {
+    public ExampleController(final EncapsulatedFooRepository fooRepository) {
         this.fooRepository = fooRepository;
     }
 
@@ -37,7 +37,7 @@ public class ExampleController {
 
     @PostMapping(PROTECTED_DEFAULT_FOOS_URL)
     public ResponseEntity<Void> create() {
-        final var savedFoo = fooRepository.save(new FooEntity(null, "a new foo"));
+        final var savedFoo = fooRepository.create(new FooEntity(null, "a new foo"));
         return ResponseEntity.created(ServletUriComponentsBuilder
                                      .fromCurrentRequestUri()
                                      .path("/{fooId}")

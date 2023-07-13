@@ -1,11 +1,12 @@
 package com.ftm.vcp.bootexamples.infrastructure.driven.jdbc;
 
 import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.entity.FooEntity;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-interface FooRepository extends CrudRepository<FooEntity, String>, EncapsulatedFooRepository {
+@Component
+public interface EncapsulatedFooRepository {
 
     Optional<FooEntity> findByIdAndNameLike(String id, String name);
 
@@ -13,8 +14,11 @@ interface FooRepository extends CrudRepository<FooEntity, String>, EncapsulatedF
 
     Optional<FooEntity> findByIdAndNameContaining(String id, String name);
 
-    @Override
-    default FooEntity create(FooEntity entity) {
-        return save(entity);
-    }
+    void deleteAll();
+
+    Optional<FooEntity> findById(String id);
+
+    Iterable<FooEntity> findAll();
+
+    FooEntity create(FooEntity entity);
 }

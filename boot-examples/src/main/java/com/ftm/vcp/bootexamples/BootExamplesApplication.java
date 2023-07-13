@@ -1,7 +1,7 @@
 package com.ftm.vcp.bootexamples;
 
 import com.ftm.vcp.bootexamples.infrastructure.driven.config.CustomSettings;
-import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.FooRepository;
+import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.EncapsulatedFooRepository;
 import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.entity.FooEntity;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import org.springframework.boot.ApplicationRunner;
@@ -32,13 +32,13 @@ public class BootExamplesApplication {
     }
 
     @Bean
-    CommandLineRunner start(FooRepository fooRepository) {
-        return args -> fooRepository.save(new FooEntity(null, "foo4"));
+    CommandLineRunner start(EncapsulatedFooRepository fooRepository) {
+        return args -> fooRepository.create(new FooEntity(null, "foo4"));
     }
 
     @Bean
-    ApplicationRunner applicationRunner(FooRepository fooRepository) {
-        return args -> fooRepository.save(new FooEntity(null, "foo5"));
+    ApplicationRunner applicationRunner(EncapsulatedFooRepository fooRepository) {
+        return args -> fooRepository.create(new FooEntity(null, "foo5"));
     }
 
     CommandLineRunner initMockServer() {
