@@ -3,9 +3,9 @@ package com.ftm.vcp.bootexamples.infrastructure.driven.config;
 import com.ftm.vcp.bootexamples.infrastructure.driving.rest.ExampleController;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.boot.actuate.health.HealthEndpoint;
+import org.springframework.boot.actuate.logging.LoggersEndpoint;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,26 +30,29 @@ import java.util.function.Supplier;
 
 @Configuration(proxyBeanMethods = false)
 @EnableMethodSecurity
-// @EnableWebSecurity // Spring Boot includes the @EnableWebSecurity annotation for you. See Boot's SecurityAutoConfiguration class for details.
+// @EnableWebSecurity // Spring Boot includes the @EnableWebSecurity annotation for you. See Boot's
+// SecurityAutoConfiguration class for details.
 public final class SecurityConfig {
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .authorizeHttpRequests(authorizeRequestConfigurer -> authorizeRequestConfigurer
-                        .requestMatchers(EndpointRequest.to(HealthEndpoint.class)).permitAll()
+                        .requestMatchers(EndpointRequest.to(HealthEndpoint.class, LoggersEndpoint.class)).permitAll()
                         .anyRequest().authenticated())
+                .httpBasic(Customizer.withDefaults())
                 .csrf(csrfConfigurer -> csrfConfigurer
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                         .csrfTokenRequestHandler(backwardCompatibleXorCsrfTokenHandler())
-                )
+                     )
                 .exceptionHandling(exceptionHandlingConfigurer -> exceptionHandlingConfigurer
                         .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .build();
     }
 
     @Bean
-    @Order(Ordered.HIGHEST_PRECEDENCE) // Important, otherwise SecurityFilterChains are resolved in the order of declaration
+    @Order(Ordered.HIGHEST_PRECEDENCE)
+        // Important, otherwise SecurityFilterChains are resolved in the order of declaration
     SecurityFilterChain httpBasicSecurityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .securityMatcher(ExampleController.PROTECTED_HTTP_BASIC_FOOS_URL)
@@ -76,10 +79,10 @@ public final class SecurityConfig {
     UserDetailsService users() {
         return new InMemoryUserDetailsManager(
                 User.builder()
-                        .username("user")
-                        .password("{noop}password")
-                        .roles("HTTP_BASIC_USER")
-                        .build()
+                    .username("user")
+                    .password("{noop}password")
+                    .roles("HTTP_BASIC_USER")
+                    .build()
         );
     }
 

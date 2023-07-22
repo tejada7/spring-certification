@@ -20,9 +20,13 @@ logging:
       springframework:
         boot:
           devtools: debug
-
 custom-configuration:
   foo: someValue
 
 product:
   url: localhost:8888
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, loggers
