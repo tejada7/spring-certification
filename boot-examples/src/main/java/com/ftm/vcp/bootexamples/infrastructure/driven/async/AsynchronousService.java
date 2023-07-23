@@ -10,9 +10,9 @@ public class AsynchronousService {
 
     private final Logger log = Logger.getLogger(getClass().getName());
 
-    @Async
+    @Async("customTaskExecutor")
     public void doSomethingMethod() {
-        log.info("Doing something from an async service...");
+        log.info("Doing something from an async service, in the thread " + Thread.currentThread().getName());
     }
 
 }
