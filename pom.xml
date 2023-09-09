@@ -120,16 +120,16 @@
         </dependency>
     </dependencies>
     <properties>
-        <spring-context.version>6.0.7</spring-context.version>
-        <spring-security-core.version>6.0.2</spring-security-core.version>
+        <spring-context.version>6.0.11</spring-context.version>
+        <spring-security-core.version>6.0.5</spring-security-core.version>
         <java.version>21</java.version>
         <jakarta.jakartaee-api.version>10.0.0</jakarta.jakartaee-api.version>
         <aspectjweaver.version>1.9.19</aspectjweaver.version>
-        <spring-test.version>6.0.7</spring-test.version>
-        <spring-boot-starter-test.version>3.0.5</spring-boot-starter-test.version>
-        <slf4j.version>2.0.5</slf4j.version>
-        <byte-buddy.version>1.14.2</byte-buddy.version>
-        <spring-plugin.version>3.0.5</spring-plugin.version>
+        <spring-test.version>6.0.11</spring-test.version>
+        <spring-boot-starter-test.version>3.1.2</spring-boot-starter-test.version>
+        <slf4j.version>2.0.7</slf4j.version>
+        <byte-buddy.version>1.14.5</byte-buddy.version>
+        <spring-plugin.version>3.1.2</spring-plugin.version>
         <spring-plugin-metadata.version>3.0.0</spring-plugin-metadata.version>
         <spring-plugin-core.version>3.0.0</spring-plugin-core.version>
     </properties>
