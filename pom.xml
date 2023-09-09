@@ -122,7 +122,7 @@
     <properties>
         <spring-context.version>6.0.7</spring-context.version>
         <spring-security-core.version>6.0.2</spring-security-core.version>
-        <java.version>20</java.version>
+        <java.version>21</java.version>
         <jakarta.jakartaee-api.version>10.0.0</jakarta.jakartaee-api.version>
         <aspectjweaver.version>1.9.19</aspectjweaver.version>
         <spring-test.version>6.0.7</spring-test.version>
