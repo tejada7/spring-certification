@@ -1,0 +1,34 @@
+
+spring:
+  kafka:
+    security:
+      protocol: SSL
+    bootstrap-servers: localhost:9093
+    ssl:
+      trust-store-location: classpath:/client-certs/kafka.client.truststore.jks
+      trust-store-password: password
+      key-store-location:  classpath:/client-certs/kafka.client.keystore.jks
+      key-store-password: password
+    consumer:
+      group-id: demo-group-id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        # From kafka 2.0 onwards, host name verification of servers is enabled by default and the errors were logged
+        # because, the kafka hostname didn't match the certificate CN. If your hostname and certificate don't match,
+        # then you can disable the hostname verification by setting the below property to empty string
+        ssl.endpoint.identification.algorithm:
+    producer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        # From kafka 2.0 onwards, host name verification of servers is enabled by default and the errors were logged
+        # because, the kafka hostname didn't match the certificate CN. If your hostname and certificate don't match,
+        # then you can disable the hostname verification by setting the below property to empty string
+        ssl.endpoint.identification.algorithm:
+  docker:
+    compose:
+      file: classpath:/docker-compose.yaml
+server:
+  port: 8084

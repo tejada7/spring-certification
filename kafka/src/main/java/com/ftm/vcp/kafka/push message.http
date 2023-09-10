@@ -1,0 +1,8 @@
+POST http://localhost:8084/push-message
+Content-Type: application/json
+
+{
+  "value": "toto"
+}
+
+###
