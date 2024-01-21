@@ -8,6 +8,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.metrics.buffering.BufferingApplicationStartup;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
@@ -28,7 +29,10 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 public class BootExamplesApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BootExamplesApplication.class, args);
+        final var springApplication = new SpringApplication(BootExamplesApplication.class);
+        // This allows to measure start-up time
+        springApplication.setApplicationStartup(new BufferingApplicationStartup(1000));
+        springApplication.run(args);
     }
 
     @Bean
