@@ -1,5 +1,6 @@
 package com.ftm.vcp.bootexamples.infrastructure.driving.rest;
 
+import com.ftm.vcp.bootexamples.infrastructure.driven.config.LoggingConfig;
 import com.ftm.vcp.bootexamples.infrastructure.driven.config.SecurityConfig;
 import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.EncapsulatedFooRepository;
 import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.entity.FooEntity;
@@ -30,8 +31,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DisplayName("Example controller")
 @DisplayNameGeneration(IndicativeSentences.class)
 @IndicativeSentencesGeneration(separator = " ", generator = ReplaceUnderscores.class)
-@WebMvcTest(ExampleController.class)
-@Import(SecurityConfig.class) // https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.7-Release-Notes#migrating-from-websecurityconfigureradapter-to-securityfilterchain
+@WebMvcTest(value = ExampleController.class, properties = "logging.level.org.springframework.web.filter.CommonsRequestLoggingFilter=DEBUG")
+@Import({SecurityConfig.class, LoggingConfig.class}) // https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.7-Release-Notes#migrating-from-websecurityconfigureradapter-to-securityfilterchain
 class ExampleControllerTest {
 
     @Autowired
