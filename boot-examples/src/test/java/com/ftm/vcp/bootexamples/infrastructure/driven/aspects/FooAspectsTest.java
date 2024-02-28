@@ -11,9 +11,9 @@ import org.springframework.test.util.AopTestUtils;
 
 import java.util.UUID;
 
-import static org.assertj.core.api.BDDAssertions.then;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.assertj.core.api.BDDAssertions.and;
+import static org.mockito.BDDMockito.mock;
+import static org.mockito.BDDMockito.then;
 
 @DisplayNameGeneration(ReplaceUnderscores.class)
 class FooAspectsTest {
@@ -29,7 +29,7 @@ class FooAspectsTest {
 
         proxy.create(new FooEntity(UUID.randomUUID().toString(), "foo1"));
 
-        then(AopTestUtils.<EncapsulatedFooRepository>getUltimateTargetObject(proxy)).isEqualTo(repository);
-        verify(service).doSomethingMethod();
+        then(service).should().doSomethingMethod();
+        and.then(AopTestUtils.<EncapsulatedFooRepository>getUltimateTargetObject(proxy)).isEqualTo(repository);
     }
 }
