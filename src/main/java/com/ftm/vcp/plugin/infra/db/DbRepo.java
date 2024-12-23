@@ -5,7 +5,7 @@ import com.ftm.vcp.plugin.infra.RepoType;
 import org.springframework.stereotype.Component;
 
 @Component
-public final class DbRepo implements PluginRepo {
+final class DbRepo implements PluginRepo {
     @Override
     public String save(final Object entity) {
         logOperation("save", System.out::println);

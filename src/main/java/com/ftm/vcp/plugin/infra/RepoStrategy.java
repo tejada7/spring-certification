@@ -5,7 +5,7 @@ import org.springframework.plugin.core.PluginRegistry;
 import org.springframework.stereotype.Component;
 
 @Component
-public final class RepoStrategy implements Repo {
+final class RepoStrategy implements Repo {
 
     private final PluginRegistry<PluginRepo, RepoType> plugins;
 
