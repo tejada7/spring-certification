@@ -33,8 +33,10 @@ import static org.assertj.core.api.BDDAssertions.then;
  *
  * @see <link>https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-testing-spring-boot-applications</link>
  */
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-
+@SpringBootTest(
+        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+        properties = "spring.testcontainers.dynamic-property-registry-injection=warn"
+)
 @DisplayNameGeneration(ReplaceUnderscores.class)
 class BootExamplesApplicationTests {
 

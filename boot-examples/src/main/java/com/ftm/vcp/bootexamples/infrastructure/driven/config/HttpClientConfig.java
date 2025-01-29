@@ -21,7 +21,7 @@ public class HttpClientConfig {
     @Bean
     ProductsClient productsClient(@Value("${product.url}") String productUrl) {
 
-        final var factory = HttpServiceProxyFactory.builder(WebClientAdapter.forClient(WebClient.builder()
+        final var factory = HttpServiceProxyFactory.builderFor(WebClientAdapter.create(WebClient.builder()
                                                                                                 .baseUrl("http://" + productUrl)
                                                                                                 .filter(retryFilter())
                                                                                                 .build()))

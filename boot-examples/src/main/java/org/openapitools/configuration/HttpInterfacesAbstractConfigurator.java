@@ -22,7 +22,7 @@ public abstract class HttpInterfacesAbstractConfigurator {
 
     @Bean(name = "org.openapitools.configuration.HttpInterfacesAbstractConfigurator.cart")
     CartApi cartHttpProxy() {
-        HttpServiceProxyFactory factory = HttpServiceProxyFactory.builder(WebClientAdapter.forClient(webClient)).build();
+        HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(WebClientAdapter.create(webClient)).build();
         return factory.createClient(CartApi.class);
     }
 
