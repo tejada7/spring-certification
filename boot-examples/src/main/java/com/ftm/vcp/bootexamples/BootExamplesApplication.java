@@ -26,7 +26,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 // --add-opens java.base/java.lang=ALL-UNNAMED --add-modules spring.boot.devtools
 @SpringBootApplication
 @EnableConfigurationProperties(CustomSettings.class)
-public class BootExamplesApplication {
+class BootExamplesApplication {
 
     public static void main(String[] args) {
         final var springApplication = new SpringApplication(BootExamplesApplication.class);
