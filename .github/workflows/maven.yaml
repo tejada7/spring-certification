@@ -27,11 +27,13 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven root project
+    - name: Build root project with Maven
       run: mvn -B package --file pom.xml
-    - name: Build with Maven boot project
+    - name: Build boot-examples with Maven
       run: cd boot-examples && mvn -B package --file pom.xml
-    - name: Build with Maven kafka project
+    - name: Build kafka project with Maven
       run: cd kafka && mvn -B package --file pom.xml
-    - name: Build with Maven auth-server project
+    - name: Build auth-server project with Maven
       run: cd authz-server && mvn -B package --file pom.xml
+    - name: Build keycloak project with Maven
+      run: cd keycloak && mvn -B package --file pom.xml
