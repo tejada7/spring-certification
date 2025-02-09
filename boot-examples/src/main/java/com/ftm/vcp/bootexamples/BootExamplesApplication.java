@@ -1,8 +1,7 @@
 package com.ftm.vcp.bootexamples;
 
+import com.ftm.vcp.bootexamples.application.CreatorApi;
 import com.ftm.vcp.bootexamples.infrastructure.driven.config.CustomSettings;
-import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.EncapsulatedFooRepository;
-import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.entity.FooEntity;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
@@ -11,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.metrics.buffering.BufferingApplicationStartup;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -36,13 +36,15 @@ class BootExamplesApplication {
     }
 
     @Bean
-    CommandLineRunner start(EncapsulatedFooRepository fooRepository) {
-        return args -> fooRepository.create(new FooEntity(null, "foo4"));
+    @Profile("dev")
+    CommandLineRunner start(CreatorApi creator) {
+        return args -> creator.create("foo4");
     }
 
     @Bean
-    ApplicationRunner applicationRunner(EncapsulatedFooRepository fooRepository) {
-        return args -> fooRepository.create(new FooEntity(null, "foo5"));
+    @Profile("dev")
+    ApplicationRunner applicationRunner(CreatorApi creator) {
+        return args -> creator.create("foo5");
     }
 
     CommandLineRunner initMockServer() {
@@ -52,13 +54,13 @@ class BootExamplesApplication {
             IntStream.range(1, 5).forEach(productId -> {
                 try {
                     wireMockServer.stubFor(
-                            get(urlPathEqualTo("/products/" + productId))
-                                    .willReturn(aResponse()
-                                            .withStatus(HttpStatus.OK.value())
-                                            .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                                            .withBody(Files.readString(ResourceUtils.getFile(
-                                                    "classpath:mocks/product_" + productId + ".json").toPath())))
-                                          );
+                        get(urlPathEqualTo("/products/" + productId))
+                            .willReturn(aResponse()
+                                .withStatus(HttpStatus.OK.value())
+                                .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                                .withBody(Files.readString(ResourceUtils.getFile(
+                                    "classpath:mocks/product_" + productId + ".json").toPath())))
+                    );
                 } catch (IOException e) {
                     throw new UncheckedIOException(e);
                 }

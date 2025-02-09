@@ -1,7 +1,7 @@
 package com.ftm.vcp.bootexamples.application;
 
-import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.EncapsulatedFooRepository;
-import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.entity.FooEntity;
+import com.ftm.vcp.bootexamples.domain.Foo;
+import com.ftm.vcp.bootexamples.domain.FooRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -16,17 +16,17 @@ import static org.mockito.BDDMockito.given;
 class FinderTest {
 
     @Test
-    void should_find_entity(@Mock EncapsulatedFooRepository fooMockedRepository) {
+    void should_find_entity(@Mock FooRepository fooMockedRepository) {
         // Arrange
         final var finder = new Finder(fooMockedRepository);
         final String anId = "123";
-        final var expected = new FooEntity("123", "existingFoo");
+        final var expected = new Foo("123", "existingFoo");
         given(fooMockedRepository.findById(anId)).willReturn(Optional.of(expected));
 
         // Act
         final var actual = finder.apply(anId);
 
         // Assert
-        then(actual).isEqualTo(expected);
+        then(actual).contains(expected);
     }
 }

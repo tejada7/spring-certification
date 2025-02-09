@@ -1,10 +1,11 @@
 package com.ftm.vcp.bootexamples.infrastructure.driving.rest;
 
+import com.ftm.vcp.bootexamples.application.CreatorApi;
+import com.ftm.vcp.bootexamples.application.MultipleFinderApi;
+import com.ftm.vcp.bootexamples.domain.Foo;
 import com.ftm.vcp.bootexamples.infrastructure.driven.config.DefaultOneTimeTokenProviderImpl;
 import com.ftm.vcp.bootexamples.infrastructure.driven.config.LoggingConfig;
 import com.ftm.vcp.bootexamples.infrastructure.driven.config.SecurityConfig;
-import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.EncapsulatedFooRepository;
-import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.entity.FooEntity;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.IndicativeSentencesGeneration;
@@ -44,7 +45,10 @@ class ExampleControllerTest {
     private MockMvc mockMvc;
 
     @MockitoBean
-    private EncapsulatedFooRepository fooRepository;
+    private CreatorApi creator;
+
+    @MockitoBean
+    private MultipleFinderApi multipleFinder;
 
     @MockitoBean
     private H2ConsoleProperties h2ConsoleProperties;
@@ -89,7 +93,7 @@ class ExampleControllerTest {
     @Test
     @WithMockUser
     void should_reply_created_when_foo_created() throws Exception {
-        given(fooRepository.create(any())).willReturn(new FooEntity("123", "a new foo"));
+        given(creator.create(any())).willReturn(new Foo("123", "a new foo"));
 
         final var xsrfCookie = mockMvc.perform(post(ExampleController.PROTECTED_CSRF_FOOS_URL))
             .andExpect(status().isForbidden())

@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="BootExamplesApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" value="dev" />
+    <module name="boot-examples" />
+    <option name="PROGRAM_PARAMETERS" value="--add-opens=java.base/java.lang=ALL-UNNAMED" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.ftm.vcp.bootexamples.BootExamplesApplication" />
+    <option name="VM_PARAMETERS" value="--add-opens=java.base/java.lang=ALL-UNNAMED" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

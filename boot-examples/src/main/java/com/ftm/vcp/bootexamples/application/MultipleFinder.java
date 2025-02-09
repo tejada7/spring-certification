@@ -4,19 +4,20 @@ import com.ftm.vcp.bootexamples.domain.Foo;
 import com.ftm.vcp.bootexamples.domain.FooRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
-class Finder implements FinderApi {
+class MultipleFinder implements MultipleFinderApi {
 
     private final FooRepository fooRepository;
 
-    Finder(final FooRepository fooRepository) {
+    MultipleFinder(final FooRepository fooRepository) {
         this.fooRepository = fooRepository;
     }
 
     @Override
-    public Optional<Foo> apply(final String id) {
-        return fooRepository.findById(id);
+    public List<Foo> get() {
+        return fooRepository.findAll();
     }
 }

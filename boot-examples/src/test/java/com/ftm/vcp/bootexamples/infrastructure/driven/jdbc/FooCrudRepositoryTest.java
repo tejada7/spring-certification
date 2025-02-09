@@ -6,24 +6,26 @@ import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
+import org.springframework.context.annotation.Import;
 
 import static org.assertj.core.api.BDDSoftAssertions.thenSoftly;
 
 @DataJdbcTest
+@Import(FooJdbcAdapter.class)
 @DisplayNameGeneration(ReplaceUnderscores.class)
-class FooRepositoryTest {
+class FooCrudRepositoryTest {
 
     @Autowired
-    private FooRepository fooRepository;
+    private FooCrudRepository fooCrudRepository;
 
     @Test
     void should_find_by_id_and_name_like() {
-        final var savedEntity = fooRepository.create(new FooEntity(null, "toto"));
+        final var savedEntity = fooCrudRepository.save(new FooEntity(null, "toto"));
 
         thenSoftly(softly -> {
-            softly.then(fooRepository.findByIdAndNameLike(savedEntity.id(), "%ot%")).isPresent();
-            softly.then(fooRepository.findByIdAndName(savedEntity.id(), "toto")).isPresent();
-            softly.then(fooRepository.findByIdAndNameContaining(savedEntity.id(), "tot")).isPresent();
+            softly.then(fooCrudRepository.findByIdAndNameLike(savedEntity.id(), "%ot%")).isPresent();
+            softly.then(fooCrudRepository.findByIdAndName(savedEntity.id(), "toto")).isPresent();
+            softly.then(fooCrudRepository.findByIdAndNameContaining(savedEntity.id(), "tot")).isPresent();
         });
     }
 }

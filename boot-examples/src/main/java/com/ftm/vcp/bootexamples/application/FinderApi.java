@@ -1,10 +1,11 @@
 package com.ftm.vcp.bootexamples.application;
 
-import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.entity.FooEntity;
+import com.ftm.vcp.bootexamples.domain.Foo;
 
+import java.util.Optional;
 import java.util.function.Function;
 
 @FunctionalInterface
-public interface FinderApi extends Function<String, FooEntity> {
+public interface FinderApi extends Function<String, Optional<Foo>> {
 
 }

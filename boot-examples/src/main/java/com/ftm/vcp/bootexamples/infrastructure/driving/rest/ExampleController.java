@@ -1,7 +1,8 @@
 package com.ftm.vcp.bootexamples.infrastructure.driving.rest;
 
-import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.EncapsulatedFooRepository;
-import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.entity.FooEntity;
+import com.ftm.vcp.bootexamples.application.CreatorApi;
+import com.ftm.vcp.bootexamples.application.MultipleFinderApi;
+import com.ftm.vcp.bootexamples.domain.Foo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +15,12 @@ public class ExampleController {
     public static final String PROTECTED_HTTP_BASIC_FOOS_URL = "/protected/http-basic/foos";
     public static final String PROTECTED_LOGIN_URL = "/protected/resource";
 
-    private final EncapsulatedFooRepository fooRepository;
+    private final CreatorApi creator;
+    private final MultipleFinderApi multipleFinder;
 
-    public ExampleController(final EncapsulatedFooRepository fooRepository) {
-        this.fooRepository = fooRepository;
+    public ExampleController(CreatorApi creator, MultipleFinderApi multipleFinder) {
+        this.creator = creator;
+        this.multipleFinder = multipleFinder;
     }
 
     @RequestMapping("{p1}/{p2}")
@@ -26,28 +29,28 @@ public class ExampleController {
     }
 
     @GetMapping(PROTECTED_CSRF_FOOS_URL)
-    public Iterable<FooEntity> listFoos() {
-        return fooRepository.findAll();
+    public Iterable<Foo> listFoos() {
+        return multipleFinder.get();
     }
 
     @PreAuthorize("hasRole('HTTP_BASIC_USER')")
     @GetMapping(PROTECTED_HTTP_BASIC_FOOS_URL)
-    public Iterable<FooEntity> listFoosProtectedWithHttpBasic() {
-        return fooRepository.findAll();
+    public Iterable<Foo> listFoosProtectedWithHttpBasic() {
+        return multipleFinder.get();
     }
 
     @PostMapping(PROTECTED_CSRF_FOOS_URL)
     public ResponseEntity<Void> create() {
-        final var savedFoo = fooRepository.create(new FooEntity(null, "a new foo"));
+        final var savedFoo = creator.create("a new foo");
         return ResponseEntity.created(ServletUriComponentsBuilder
-                                     .fromCurrentRequestUri()
-                                     .path("/{fooId}")
-                                     .buildAndExpand(savedFoo.id()).toUri())
-                             .build();
+                .fromCurrentRequestUri()
+                .path("/{fooId}")
+                .buildAndExpand(savedFoo.id()).toUri())
+            .build();
     }
 
     @GetMapping(PROTECTED_LOGIN_URL)
-     String protectedResource() {
+    String protectedResource() {
         return "✅ successfully authenticated!";
     }
 

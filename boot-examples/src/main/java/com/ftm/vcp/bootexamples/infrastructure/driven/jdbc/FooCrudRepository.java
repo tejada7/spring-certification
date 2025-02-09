@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
-interface FooRepository extends CrudRepository<FooEntity, String>, EncapsulatedFooRepository {
+interface FooCrudRepository extends CrudRepository<FooEntity, String> {
 
     Optional<FooEntity> findByIdAndNameLike(String id, String name);
 
@@ -13,8 +13,4 @@ interface FooRepository extends CrudRepository<FooEntity, String>, EncapsulatedF
 
     Optional<FooEntity> findByIdAndNameContaining(String id, String name);
 
-    @Override
-    default FooEntity create(FooEntity entity) {
-        return save(entity);
-    }
 }
