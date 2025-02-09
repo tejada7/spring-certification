@@ -23,6 +23,8 @@
         <openapi-generator-maven-plugin.version>7.0.1</openapi-generator-maven-plugin.version>
         <wiremock-jre8.version>3.0.1</wiremock-jre8.version>
         <awaitility.version>4.2.1</awaitility.version>
+        <instancio-junit.version>5.3.0</instancio-junit.version>
+        <spring-boot-testjars.version>0.0.1</spring-boot-testjars.version>
     </properties>
     <dependencies>
         <dependency>
@@ -96,15 +98,22 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-dependencies</artifactId>
-            <version>3.3.1</version>
+            <version>3.4.2</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.experimental.boot</groupId>
             <artifactId>spring-boot-testjars</artifactId>
-            <version>0.0.1</version>
+            <version>${spring-boot-testjars.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.instancio</groupId>
+            <artifactId>instancio-junit</artifactId>
+            <version>${instancio-junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
