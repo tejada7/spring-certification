@@ -8,7 +8,7 @@ import java.util.function.UnaryOperator;
 @FunctionalInterface
 public interface CreatorApi extends Function<String, Foo> {
 
-    default Foo create(String id) {
-        return apply(id);
+    default Foo create(String name) {
+        return apply(name);
     }
 }

@@ -3,6 +3,7 @@ package com.ftm.vcp.bootexamples.infrastructure.driving.rest;
 import com.ftm.vcp.bootexamples.application.CreatorApi;
 import com.ftm.vcp.bootexamples.application.MultipleFinderApi;
 import com.ftm.vcp.bootexamples.domain.Foo;
+import com.ftm.vcp.bootexamples.domain.FooIdentifier;
 import com.ftm.vcp.bootexamples.infrastructure.driven.config.DefaultOneTimeTokenProviderImpl;
 import com.ftm.vcp.bootexamples.infrastructure.driven.config.LoggingConfig;
 import com.ftm.vcp.bootexamples.infrastructure.driven.config.SecurityConfig;
@@ -93,7 +94,7 @@ class ExampleControllerTest {
     @Test
     @WithMockUser
     void should_reply_created_when_foo_created() throws Exception {
-        given(creator.create(any())).willReturn(new Foo("123", "a new foo"));
+        given(creator.create(any())).willReturn(new Foo(FooIdentifier.of("123"), "a new foo"));
 
         final var xsrfCookie = mockMvc.perform(post(ExampleController.PROTECTED_CSRF_FOOS_URL))
             .andExpect(status().isForbidden())

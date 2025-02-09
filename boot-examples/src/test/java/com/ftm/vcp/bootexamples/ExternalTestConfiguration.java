@@ -2,6 +2,7 @@ package com.ftm.vcp.bootexamples;
 
 import com.ftm.vcp.bootexamples.application.FinderApi;
 import com.ftm.vcp.bootexamples.domain.Foo;
+import com.ftm.vcp.bootexamples.domain.FooIdentifier;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 
@@ -16,6 +17,6 @@ class ExternalTestConfiguration {
     }
 
     static Optional<Foo> getJohnDoe() {
-        return Optional.of(new Foo("123", "John Doe"));
+        return Optional.of(new Foo(FooIdentifier.of("123"), "John Doe"));
     }
 }

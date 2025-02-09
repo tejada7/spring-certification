@@ -3,6 +3,7 @@ package com.ftm.vcp.bootexamples.infrastructure.driving.rest;
 import com.ftm.vcp.bootexamples.application.CreatorApi;
 import com.ftm.vcp.bootexamples.application.MultipleFinderApi;
 import com.ftm.vcp.bootexamples.domain.Foo;
+import com.ftm.vcp.bootexamples.domain.FooIdentifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;

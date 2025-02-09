@@ -2,6 +2,7 @@ package com.ftm.vcp.bootexamples;
 
 import com.ftm.vcp.bootexamples.application.FinderApi;
 import com.ftm.vcp.bootexamples.domain.Foo;
+import com.ftm.vcp.bootexamples.domain.FooIdentifier;
 import com.ftm.vcp.bootexamples.infrastructure.driven.jdbc.entity.FooEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,6 @@ class ITWithInnerTestConfigurationTest {
     }
 
     private static Optional<Foo> getJohnDoe() {
-        return Optional.of(new Foo("123", "John Doe"));
+        return Optional.of(new Foo(FooIdentifier.of("123"), "John Doe"));
     }
 }

@@ -1,6 +1,7 @@
 package com.ftm.vcp.bootexamples.application;
 
 import com.ftm.vcp.bootexamples.domain.Foo;
+import com.ftm.vcp.bootexamples.domain.FooIdentifier;
 import com.ftm.vcp.bootexamples.domain.FooRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +21,7 @@ class FinderTest {
         // Arrange
         final var finder = new Finder(fooMockedRepository);
         final String anId = "123";
-        final var expected = new Foo("123", "existingFoo");
+        final var expected = new Foo(FooIdentifier.of("123"), "existingFoo");
         given(fooMockedRepository.findById(anId)).willReturn(Optional.of(expected));
 
         // Act

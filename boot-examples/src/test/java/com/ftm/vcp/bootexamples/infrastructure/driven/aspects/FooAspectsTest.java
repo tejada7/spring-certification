@@ -1,6 +1,7 @@
 package com.ftm.vcp.bootexamples.infrastructure.driven.aspects;
 
 import com.ftm.vcp.bootexamples.application.CreatorApi;
+import com.ftm.vcp.bootexamples.domain.FooIdentifier;
 import com.ftm.vcp.bootexamples.infrastructure.driven.async.AsynchronousService;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
