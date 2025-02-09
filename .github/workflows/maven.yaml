@@ -32,9 +32,9 @@ jobs:
     - name: Build with Maven boot project
       run: cd boot-examples && mvn -B package --file pom.xml
     - name: Build with Maven kafka project
-      run: cd ../kafka && mvn -B package --file pom.xml
+      run: cd kafka && mvn -B package --file pom.xml
     - name: Build with Maven auth-server project
-      run: cd ../authz-server && mvn -B package --file pom.xml
+      run: cd authz-server && mvn -B package --file pom.xml
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
