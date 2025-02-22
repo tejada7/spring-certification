@@ -133,7 +133,7 @@
         <spring-plugin-metadata.version>3.0.0</spring-plugin-metadata.version>
         <spring-plugin-core.version>3.0.0</spring-plugin-core.version>
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
-        <maven-surefire-plugin.version>3.5.0</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
     </properties>
 
     <build>
