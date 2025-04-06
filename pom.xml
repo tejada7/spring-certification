@@ -128,7 +128,7 @@
         <spring-test.version>6.1.12</spring-test.version>
         <spring-boot-starter-test.version>3.4.2</spring-boot-starter-test.version>
         <slf4j.version>2.0.16</slf4j.version>
-        <byte-buddy.version>1.17.0</byte-buddy.version>
+        <byte-buddy.version>1.17.4</byte-buddy.version>
         <spring-plugin.version>3.4.2</spring-plugin.version>
         <spring-plugin-metadata.version>3.0.0</spring-plugin-metadata.version>
         <spring-plugin-core.version>3.0.0</spring-plugin-core.version>
