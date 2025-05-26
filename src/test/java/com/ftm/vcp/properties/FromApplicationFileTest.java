@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 
 @SpringJUnitConfig(PropertiesConfig.class)
 @DisplayNameGeneration(ReplaceUnderscores.class)
-@DirtiesContext
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 class FromApplicationFileTest {
 
     @Autowired

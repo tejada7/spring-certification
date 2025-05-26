@@ -1,7 +1,6 @@
 package com.ftm.vcp.bootexamples;
 
 import com.ftm.vcp.bootexamples.application.CreatorApi;
-import com.ftm.vcp.bootexamples.domain.FooIdentifier;
 import com.ftm.vcp.bootexamples.infrastructure.driven.config.CustomSettings;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import org.springframework.boot.ApplicationRunner;
