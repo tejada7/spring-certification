@@ -125,7 +125,7 @@
         <java.version>24</java.version>
         <jakarta.jakartaee-api.version>10.0.0</jakarta.jakartaee-api.version>
         <aspectjweaver.version>1.9.24</aspectjweaver.version>
-        <spring-test.version>6.2.6</spring-test.version>
+        <spring-test.version>6.2.8</spring-test.version>
         <spring-boot-starter-test.version>3.5.0</spring-boot-starter-test.version>
         <slf4j.version>2.0.17</slf4j.version>
         <byte-buddy.version>1.17.4</byte-buddy.version>
