@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: authz-server
+  security:
+    user:
+      name: user
+      password: password
+    oauth2:
+      authorization-server:
+        client:
+          example-client:
+            registration:
+              client-id: "client"
+              client-secret: "{noop}secret"
+              client-authentication-methods:
+                - "client_secret_post"
+              authorization-grant-types:
+                - "authorization_code"
+                - "refresh_token"
+                - "client_credentials"
+              redirect-uris:
+                - "http://127.0.0.1:8080/login/oauth2/code/messaging-client-oidc"
+                - "http://127.0.0.1:8080/authorized"
+              post-logout-redirect-uris:
+                - "http://127.0.0.1:8080/logged-out"
+              scopes:
+                - "openid"
+                - "profile"
+                - "foo.read"
+                - "foo.write"
+            require-authorization-consent: true
+
+logging:
+  level:
+    org.springframework.security: trace
