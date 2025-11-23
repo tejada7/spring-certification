@@ -1,6 +1,8 @@
 package com.ftm.vcp.bootexamples.infrastructure.driven.http;
 
 import com.ftm.vcp.bootexamples.infrastructure.driven.config.HttpClientConfig;
+import org.assertj.core.api.BDDAssertions;
+import org.awaitility.Awaitility;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.Test;
@@ -11,8 +13,13 @@ import org.springframework.boot.test.system.OutputCaptureExtension;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
+import java.time.Duration;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchRuntimeException;
+import static org.assertj.core.api.BDDAssertions.then;
 import static org.assertj.core.api.BDDSoftAssertions.thenSoftly;
+import static org.awaitility.Awaitility.await;
 
 @SpringJUnitConfig({HttpClientConfig.class})
 @DisplayNameGeneration(ReplaceUnderscores.class)
@@ -33,12 +40,10 @@ class ProductsClientTest {
 
         final var throwable = catchRuntimeException(() -> productsClient.getProductById(1L));
 
-        thenSoftly(softly -> {
-            softly.then(throwable).isInstanceOf(RuntimeException.class).hasMessage("Retries exhausted: 3/3");
-            softly.then(output.toString()).contains(
-                    expectedRetryMessage,
-                    expectedRetryMessage,
-                    expectedRetryMessage);
-        });
+        then(throwable).isInstanceOf(RuntimeException.class).hasMessage("Retries exhausted: 3/3");
+        await().atMost(Duration.ofSeconds(5))
+            .untilAsserted(() -> then(output).contains(
+                expectedRetryMessage, expectedRetryMessage, expectedRetryMessage)
+            );
     }
 }

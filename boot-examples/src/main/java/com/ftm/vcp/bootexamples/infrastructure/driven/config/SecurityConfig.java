@@ -3,7 +3,7 @@ package com.ftm.vcp.bootexamples.infrastructure.driven.config;
 import com.ftm.vcp.bootexamples.infrastructure.driving.rest.ExampleController;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
+import org.springframework.boot.security.autoconfigure.web.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
