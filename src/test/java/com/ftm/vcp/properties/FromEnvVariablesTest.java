@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 
 @SpringJUnitConfig(PropertiesConfig.class)
 @DisplayNameGeneration(ReplaceUnderscores.class)
-@DirtiesContext
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 class FromEnvVariablesTest {
 
     private static final String ENV_VARIABLES = "ENV_VARIABLES";
