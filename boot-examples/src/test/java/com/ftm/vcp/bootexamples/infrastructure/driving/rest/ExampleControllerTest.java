@@ -11,8 +11,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.h2.H2ConsoleProperties;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -48,8 +47,8 @@ class ExampleControllerTest {
     @MockitoBean
     private MultipleFinderApi multipleFinder;
 
-    @MockitoBean
-    private H2ConsoleProperties h2ConsoleProperties;
+//    @MockitoBean
+//    private H2ConsoleProperties h2ConsoleProperties;
 
     @Test
     @WithMockUser
