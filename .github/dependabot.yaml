@@ -6,6 +6,15 @@
 version: 2
 updates:
   - package-ecosystem: "maven" # See documentation for possible values
-    directory: "/" # Location of package manifests
+    directories:
+      - "/"
+      - "authz-server"
+      - "boot-examples"
+      - "kafka"
     schedule:
       interval: "weekly"
+    groups:
+      maven-deps:
+        update-types: [ "patch", "minor" ]
+      commit-message:
+        prefix: "chore(maven-deps): "
