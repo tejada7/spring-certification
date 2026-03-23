@@ -114,7 +114,7 @@
         </dependency>
     </dependencies>
     <properties>
-        <spring-context.version>7.0.1</spring-context.version>
+        <spring-context.version>7.0.6</spring-context.version>
         <spring-security-core.version>7.0.4</spring-security-core.version>
         <java.version>25</java.version>
         <jakarta.jakartaee-api.version>11.0.0</jakarta.jakartaee-api.version>
