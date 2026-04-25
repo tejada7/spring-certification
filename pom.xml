@@ -115,7 +115,7 @@
     </dependencies>
     <properties>
         <spring-context.version>7.0.6</spring-context.version>
-        <spring-security-core.version>7.0.4</spring-security-core.version>
+        <spring-security-core.version>7.0.5</spring-security-core.version>
         <java.version>25</java.version>
         <jakarta.jakartaee-api.version>11.0.0</jakarta.jakartaee-api.version>
         <aspectjweaver.version>1.9.25.1</aspectjweaver.version>
